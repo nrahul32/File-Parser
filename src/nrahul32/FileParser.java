@@ -12,23 +12,40 @@ public class FileParser {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		StudentComparator compareBy = null;
 
 		File f = new File("./students.txt");		
 		ArrayList<Student> studentList = createObjectsFromFile(f);
 		printStudents(studentList);
 
-		System.out.println("Sorted by Roll No:");
-		Collections.sort(studentList, new SortStudentsByRollNo());
-		printStudents(studentList);
+		OptionToSort option = getOptionFromUser();
 		
-		System.out.println("Sorted by Name:");
-		Collections.sort(studentList, new SortStudentsByName());
-		printStudents(studentList);
+		switch(option){
+		case ROLLNO:
+			compareBy = new SortStudentsByRollNo();
+			break;
+		case NAME:
+			compareBy = new SortStudentsByName();
+			break;			
+		case TOTAL:
+			compareBy = new SortStudentsByTotal();
+			break;
+		default:
+			System.out.println("It shouldn't reach this line");
+		}
 		
-		System.out.println("Sorted by Total:");
-		Collections.sort(studentList, new SortStudentsByTotal());
+		System.out.println("\nSorted by " + option.toString());
+		Collections.sort(studentList, compareBy);
 		printStudents(studentList);
+	}
 
+	private static OptionToSort getOptionFromUser() {
+		
+		System.out.println("How do you want to sort the students?");
+		System.out.println("1 for Roll no, 2 for name and 3 for Total");
+		Scanner reader = new Scanner(System.in);
+
+		return OptionToSort.getOption(Integer.parseInt(reader.next()));
 	}
 
 	private static void printStudents(ArrayList<Student> studentList) {
