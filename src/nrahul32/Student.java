@@ -9,7 +9,7 @@ public class Student {
 	private String name;
 
 	public Student(int rollNo, String name, int maths, int science, int english){
-		this.rollNo = rollNo;
+		this.setRollNo(rollNo);
 		this.name = name;
 		this.maths = maths;
 		this.science = science;
@@ -18,11 +18,14 @@ public class Student {
 	}
 	
 	public void printDetails(){
-		System.out.println("Name: " + name);
-		System.out.println("rollNo: " + rollNo);
-		System.out.println("maths: " + maths);
-		System.out.println("science: " + science);
-		System.out.println("english: " + english);
-		System.out.println("total: " + total);
+		System.out.println(name + "\t" + rollNo + "\t" + maths + "\t" + science + "\t" + english + "\t" + total);
+	}
+
+	public int getRollNo() {
+		return rollNo;
+	}
+
+	public void setRollNo(int rollNo) {
+		this.rollNo = rollNo;
 	}
 }

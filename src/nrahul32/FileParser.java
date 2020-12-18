@@ -3,6 +3,7 @@ package nrahul32;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class FileParser {
@@ -15,13 +16,18 @@ public class FileParser {
 		File f = new File("./students.txt");		
 		ArrayList<Student> studentList = createObjectsFromFile(f);
 		printStudents(studentList);
+		Collections.sort(studentList, new SortStudentsByRollNo());
+		printStudents(studentList);
 	}
 
 	private static void printStudents(ArrayList<Student> studentList) {
 		
+		System.out.println("Student List");
+		System.out.println("Name\tRoll no\tMaths\tScience\tEnglish\tTotal");
 		for(Student s : studentList){
 			s.printDetails();
 		}
+		System.out.println("");
 	}
 
 	private static ArrayList<Student> createObjectsFromFile(File f) {
