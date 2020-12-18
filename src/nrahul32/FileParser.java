@@ -16,8 +16,19 @@ public class FileParser {
 		File f = new File("./students.txt");		
 		ArrayList<Student> studentList = createObjectsFromFile(f);
 		printStudents(studentList);
+
+		System.out.println("Sorted by Roll No:");
 		Collections.sort(studentList, new SortStudentsByRollNo());
 		printStudents(studentList);
+		
+		System.out.println("Sorted by Name:");
+		Collections.sort(studentList, new SortStudentsByName());
+		printStudents(studentList);
+		
+		System.out.println("Sorted by Total:");
+		Collections.sort(studentList, new SortStudentsByTotal());
+		printStudents(studentList);
+
 	}
 
 	private static void printStudents(ArrayList<Student> studentList) {
